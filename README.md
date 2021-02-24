@@ -13,9 +13,11 @@
 
 ## Installation 
 
-No Installation Necessary. One can access the app here: 
+No Installation Necessary. One can access the app here: https://jesscru.github.io/trivia-quiz/
 
 ## Usage
+
+
 
 The quiz will render as follows:
 
