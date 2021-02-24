@@ -112,34 +112,45 @@ const quizContent = [
     correctAnswer: 'D'
 }];
 
+// displays the first question and its corresponding answer choices 
+    const displayQ1 = (randomAndReduced) => {
+      
+        $('.questions').html(randomAndReduced[0].question);
+        for (var i = 0; i < randomAndReduced[0].answers.length - 1; i++) {
+            $('#answer-choice1').html(randomAndReduced[0].answers[0]);
+            $('#answer-choice2').html(randomAndReduced[0].answers[1]);
+            $('#answer-choice3').html(randomAndReduced[0].answers[2]);
+            $('#answer-choice4').html(randomAndReduced[0].answers[3]);
+            $(".answers").append($('.choices'));
+        }
+
+    }
 
 
+
+
+    
 // displays the questions and answers choices from the quizcontent array 
-const displayQuestions = () => {
+    const randomizeQuestions = () => {
 
     // randomizes the order of the questions in the array 
    let randomized =  quizContent.sort(function(){
         return Math.round(Math.random()) - 0.5 * (Math.random() * 10);
     })
 
-    // pulls the last 5 questions from the randomized questions
+    // pulls the last 5 questions from the randomized questions and passes them into the first question function 
     let randomAndReduced = randomized.slice(5);
+    displayQ1(randomAndReduced);
 
-    for (let i = 0; i < randomAndReduced.length; i++) {
-        $('.questions').html(randomAndReduced[i].question);
-        randomAndReduced[i].answers.forEach(answer => {
-            $('.answer-choice').html(answer);
-            $(".answers").append($('<li class="answer-choice"><li>'));
-            console.log(answer);
-            })
-        }
-    
     }
-    displayQuestions();
+
+randomizeQuestions();
 
 
 
 
 
+// when start button is clicked, the first question is displayed and the appropriate compenents disappear
+// $('.start-quiz').on('click', displayQ1(randomAndReduced));
 
 });

@@ -8,15 +8,15 @@ body {
 }
 
 /* landing display */
-.start-container {
+.main-container {
     justify-content: center;    
     align-items: center;    
     border-radius: 20px;
     background-color: white;
     box-shadow: 5px 3px 3px rgb(24, 24, 24);
     width: 60%;
-    height: 600px;
-    margin: 40px auto;
+    height: 575px;
+    margin: 80px auto;
     padding: 20px;
 }
 
@@ -55,4 +55,39 @@ button {
 button:hover {
     background-color:rgb(148, 204, 253);
     border: solid gray 0.5px;
+}
+
+
+
+
+
+/* Questions/answers display*/
+.questions {
+    margin: 40px 0;
+    font-size: 24px;
+}
+
+.answers {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 20px;
+}
+
+li {
+    text-align: left;
+    list-style-type: none;
+    margin: 20px;
+    padding: 15px;
+    border-radius: 20px;
+    background-color: rgba(87, 1, 87, 0.863);
+    color: white;
+    width: 85%;
+    text-indent: 5px;
+}
+
+img {
+    width: 15%;
+    float: right;
+    text-align: end;
+    margin-right: 20px;
 }
