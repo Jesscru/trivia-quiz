@@ -71,6 +71,7 @@ button:hover {
     text-align: center;
     margin-bottom: 40px;
     font-size: 20px;
+    cursor: pointer;
 }
 
 li {
@@ -85,7 +86,7 @@ li {
     text-indent: 5px;
 }
 
-img {
+.arrow {
     width: 15%;
     float: right;
     text-align: end;
