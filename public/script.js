@@ -1,11 +1,11 @@
 $(document).ready(function() {
 
-
     //  global variables 
+    const timer = $('.timer');
+    const instructions = $('.instructions');
     const questions = $('.questions');
     const answers = $(".answers");
     const answerChoices = $('.choices');
-    const nextQuestion = $('.arrow');
     const correctAnswer = 'That\'s right! Keep it up! :)';
     const incorrectAnswer = 'Oh boy. That\'s not it. -15 score points :('
 
@@ -111,8 +111,8 @@ $(document).ready(function() {
         
     }];
 
-    const correctAnswers = ["A. Burj Khalifa, Dubai", 'B. 50 meters', 'D. Holy Water', 'A. The bones', 
-    'A. Scotland', 'D. Alaska', 'B. Argentina', 'C. Little water', 'C. The Beatles', 'D. 72']
+    const correctAnswers = [ "A. Burj Khalifa, Dubai", 'B. 50 meters', 'D. Holy Water', 'A. The bones', 
+    'A. Scotland', 'D. Alaska', 'B. Argentina', 'C. Little water', 'C. The Beatles', 'D. 72' ]
 
 
     // randomizes the order of the questions in the array 
@@ -123,12 +123,48 @@ $(document).ready(function() {
     // pulls the last 5 questions from the randomized questions and passes them into the first question function 
     let randomAndReduced = randomized.slice(5);
 
-    // const userInitials = $('.initials').trim().val();
 
+     // hides question buttons
+     $('.quiz-data').css('display', 'none');
+
+
+
+    // when user clicks start button: timer starts, input value is stored, first question is called
+    $('.start-quiz').on('click', function() {
+
+        // grabs input value 
+        const userInitials = $('.initials').val().trim();
+
+        // sets timer to start at 75 seconds and count down
+        var timeStart = 75000;
+        var changeToSec = timeStart / 1000;
+
+        let quizTime = setInterval(function(){
+            changeToSec--;
+            timer.html(changeToSec + ' seconds remaining');
+
+            if (changeToSec === 0) {
+                clearInterval(quizTime);
+            }
+
+        }, 1000)
+
+        // hides instructions and input and displays first question
+        displayQ1();
+    
+    });
+
+         
 
 
     // displays the first question and its corresponding answer choices 
     const displayQ1 = () => {
+
+        // hides instructions and input and displays first question
+        instructions.css('display', 'none');
+        $('.quiz-data').css('display', 'initial');
+
+
         // display question 
         questions.html(randomAndReduced[0].question);
         // display answer choices 
@@ -142,11 +178,13 @@ $(document).ready(function() {
 
         // when an answer is chosen, it is checked and a message is displayed accordingly 
         answerChoices.on('click', function(e){
-            console.log(e.target.innerHTML);
+            let userAnswer = e.target.innerHTML;
+
+            console.log(userAnswer);
             // loop through possible correct answers. If matched = correct
             for (let i = 0; i < correctAnswers.length; i++){
                 
-                if (correctAnswers.includes(e.target.innerHTML)) {
+                if (correctAnswers.includes(userAnswer)) {
                     displayQ2();
 
                     // display the correct answer message
@@ -155,7 +193,7 @@ $(document).ready(function() {
                     // remove the correct answer message after 3 seconds 
                     setTimeout(function () {
                         $(".verdict").html(""); 
-                    }, 3000);
+                    }, 1500);
                     
                     
                 } 
@@ -163,12 +201,14 @@ $(document).ready(function() {
                 else {
                     displayQ2();
 
+                    quizTime -= 1500;
+
                     // display the incorrect answer message for 3 seconds 
                     $(".verdict").html(incorrectAnswer);
 
                     setTimeout(function () {
                         $(".verdict").html(""); 
-                    }, 3000);
+                    }, 1500);
                 }
             }
         });
@@ -189,17 +229,18 @@ $(document).ready(function() {
         }
 
         answerChoices.on('click', function(e){
-            console.log(e.target.innerHTML);
+            let userAnswer = e.target.innerHTML;
+            console.log(userAnswer);
             for (let i = 0; i < correctAnswers.length; i++){
                 
-                if (correctAnswers.includes(e.target.innerHTML)) {
+                if (correctAnswers.includes(userAnswer)) {
                     displayQ3();
 
                     $(".verdict").html(correctAnswer);
 
                     setTimeout(function () {
                         $(".verdict").html(""); 
-                    }, 3000);
+                    }, 1500);
                     
                     
                 } 
@@ -211,7 +252,7 @@ $(document).ready(function() {
 
                     setTimeout(function () {
                         $(".verdict").html(""); 
-                    }, 3000);
+                    }, 1500);
                 }
             }
         });
@@ -231,17 +272,19 @@ $(document).ready(function() {
         }
         
         answerChoices.on('click', function(e){
-            console.log(e.target.innerHTML);
+            let userAnswer = e.target.innerHTML;
+
+            console.log(userAnswer);
             for (let i = 0; i < correctAnswers.length; i++){
                 
-                if (correctAnswers.includes(e.target.innerHTML)) {
+                if (correctAnswers.includes(userAnswer)) {
                     displayQ4();
 
                     $(".verdict").html(correctAnswer);
 
                     setTimeout(function () {
                         $(".verdict").html(""); 
-                    }, 3000);
+                    }, 1500);
                     
                     
                 } 
@@ -253,7 +296,7 @@ $(document).ready(function() {
 
                     setTimeout(function () {
                         $(".verdict").html(""); 
-                    }, 3000);
+                    }, 1500);
                 }
             }
         });
@@ -273,17 +316,19 @@ $(document).ready(function() {
         }
 
         answerChoices.on('click', function(e){
-            console.log(e.target.innerHTML);
+            let userAnswer = e.target.innerHTML;
+
+            console.log(userAnswer);
             for (let i = 0; i < correctAnswers.length; i++){
                 
-                if (correctAnswers.includes(e.target.innerHTML)) {
+                if (correctAnswers.includes(userAnswer)) {
                     displayQ5();
                     
                     $(".verdict").html(correctAnswer);
 
                     setTimeout(function () {
                         $(".verdict").html(""); 
-                    }, 3000);
+                    }, 1500);
                     
                     
                 } 
@@ -294,7 +339,7 @@ $(document).ready(function() {
 
                     setTimeout(function () {
                         $(".verdict").html(""); 
-                    }, 3000);
+                    }, 1500);
                 }
             }
         });        
@@ -314,16 +359,18 @@ $(document).ready(function() {
         }
         
         answerChoices.on('click', function(e){
-            console.log(e.target.innerHTML);
+            let userAnswer = e.target.innerHTML;
+
+            console.log(userAnswer);
             for (let i = 0; i < correctAnswers.length; i++){
                 
-                if (correctAnswers.includes(e.target.innerHTML)) {
+                if (correctAnswers.includes(userAnswer)) {
                     
                     $(".verdict").html(correctAnswer);
 
                     setTimeout(function () {
                         $(".verdict").html(""); 
-                    }, 3000);
+                    }, 1500);
                     
                     
                 } 
@@ -334,27 +381,12 @@ $(document).ready(function() {
 
                     setTimeout(function () {
                         $(".verdict").html(""); 
-                    }, 3000);
+                    }, 1500);
                 }
             }
         });
     }
 
 
-    
-
-
-    // when hovering over the arrow, it will be filled in and otherwise, un-filled 
-    nextQuestion.on('mouseleave', function(){
-        nextQuestion.attr('src', './images/open-arrow.png')
-    });
-
-    nextQuestion.on('mouseenter', function(){
-        nextQuestion.attr('src', './images/filled-arrow.png')
-    });
-
-    // answers.on('click', );
-    // when start button is clicked, the first question is displayed and the appropriate compenents disappear
-    $('.start-quiz').on('click', displayQ1());
 
 });
