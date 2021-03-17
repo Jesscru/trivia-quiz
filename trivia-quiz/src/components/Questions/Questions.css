@@ -1,0 +1,29 @@
+.questions {
+    margin: 40px 0;
+    font-size: 24px;
+    font-weight: 500;
+  }
+  
+  .answers {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  li {
+    text-align: left;
+    list-style-type: none;
+    margin: 20px;
+    padding: 15px;
+    border-radius: 20px;
+    background-color: rgba(87, 1, 87, 0.863);
+    color: white;
+    width: 85%;
+    text-indent: 5px;
+  }
+  
+  .verdict {
+    font-size: 22px;
+    margin-top: 20px;
+  }
